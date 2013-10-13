@@ -1,3 +1,19 @@
+
+% Learned Features based on OMP 
+% Use Flann library as a search technique
+% Usage: Build the KDTree datastructure
+% [index, params, speedup] = flann_build_index(Database, PARA);
+% Search Using: [indices, dists] = flann_search(index, testset, 3, PARA)
+% 
+% 
+% Author: ankush2@ualberta.ca
+
+
+
+
+% Name of the video to be tested in fname = ''
+
+
 fname = 'sylv'
 [img_seq,frame_num] = load_seq(fname);
 
@@ -27,5 +43,14 @@ for i = 2:size(WarpedImages,3)
 [DotImage]  = getDotProduct(WarpedImages(:,:,1), L1,L2);
 Ref = [Ref; DotImage'];
 end
+Database = Ref';
+
+% Set the parameters for building KDTree
+PARA.algo = 'kdtree'
+PARA.trees = 8
+PARA.checks = 64
+
+% Build the index 
+[index, params, speedup] = flann_build_index(Database, PARA);
 
 % TEST
