@@ -1,3 +1,5 @@
+
+% Whitening is kept on for natural images
 % Script for setting the parameters
 %--------------------------------------------------------------------------
 
