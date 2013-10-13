@@ -4,12 +4,7 @@
 % Usage: Build the KDTree datastructure
 % [index, params, speedup] = flann_build_index(Database, PARA);
 % Search Using: [indices, dists] = flann_search(index, testset, 3, PARA)
-% 
-% 
 % Author: ankush2@ualberta.ca
-
-
-
 
 % Name of the video to be tested in fname = ''
 
@@ -37,7 +32,6 @@ Templt = firstImg(y_min:y_max, x_min:x_max);
 
 % Building the reference set
 Ref  = [];
-
 for i = 2:size(WarpedImages,3)
 [L1,L2] = ESMLEARNEDFEATURES(WarpedImages(:,:,i), D, D2,params, params2);    
 [DotImage]  = getDotProduct(WarpedImages(:,:,1), L1,L2);
