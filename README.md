@@ -21,13 +21,13 @@ Check where your mex, mexext and matlab are located in the enviroment path
 $ which mex
 /usr/home/....
 
-$which mexext
+$ which mexext
 /usr/home/...
 
 
 if they are located in different places change the environment path by 
 
-$export PATH=/usr/local/......../$PATH
+$ export PATH=/usr/local/......../$PATH
 
 Here /usr/local/..... is the path that had both mex and mexext as well as matlab.
 When this is done you are set. 
