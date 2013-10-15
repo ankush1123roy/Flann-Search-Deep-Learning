@@ -45,12 +45,23 @@ Ref = [Ref; DotImage'];
 end
 Database = Ref';
 
-% Set the parameters for building KDTree
+% Set the parameters for building KDTree with no of neighbours to search
 PARA.algo = 'kdtree'
 PARA.trees = 8
 PARA.checks = 64
+KNeighbours = 5
 
 % Build the index 
 [index, params, speedup] = flann_build_index(Database, PARA);
 
+% Cluster and build the graph for GNN
+
 % TEST
+
+for i = 1: size(img_seq,3)
+   Image = im2double(img_seq(:,:,i));
+   
+   % Search using ANN KDTree
+   [indices, dists] = flann_search(index, test, KNeighbours, PARA);
+end
+
