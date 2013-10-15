@@ -32,7 +32,7 @@ Templt = firstImg(y_min:y_max, x_min:x_max);
 % [SampleImages] = generateDictSamples(Template); for full homography
 % based synthetic images
 
-[SampleImages] = generateDictSamples(Templt);
+[SampleImages,H] = generateDictSamples(Templt);
 % Get the learned Filters 
 [D, D2]  = learnedCodesfirstLayer(SampleImages,params,params2);
 
