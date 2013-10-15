@@ -25,16 +25,22 @@ firstImg = img_seq(:,:,1);
 close all 
 Templt = firstImg(y_min:y_max, x_min:x_max);
 % Generate a set of Images to get the learned filters
-[WarpedImages,mask] = warpImage(5,5,y_min,y_max,x_min,x_max,firstImg);
 
+
+% [SampleImages,mask] = warpImage(5,5,y_min,y_max,x_min,x_max,firstImg); 
+% for only X and Y translation based warping
+% [SampleImages] = generateDictSamples(Template); for full homography
+% based synthetic images
+
+[SampleImages] = generateDictSamples(Templt);
 % Get the learned Filters 
-[D, D2]  = learnedCodesfirstLayer(WarpedImages,mask,params,params2);
+[D, D2]  = learnedCodesfirstLayer(SampleImages,params,params2);
 
 % Building the reference set
 Ref  = [];
-for i = 2:size(WarpedImages,3)
-[L1,L2] = ESMLEARNEDFEATURES(WarpedImages(:,:,i), D, D2,params, params2);    
-[DotImage]  = getDotProduct(WarpedImages(:,:,1), L1,L2);
+for i = 2:size(SampleImages,3)
+[L1,L2] = ESMLEARNEDFEATURES(SampleImages(:,:,i), D, D2,params, params2);    
+[DotImage]  = getDotProduct(SampleImages(:,:,1), L1,L2);
 Ref = [Ref; DotImage'];
 end
 Database = Ref';

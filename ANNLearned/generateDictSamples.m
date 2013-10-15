@@ -3,14 +3,29 @@
 % generate the set of images
 % Author: ankush2@ualberta.ca
 
-function [SampleImages] = generateDictSamples(Template);
+function [SampleImages] = generateDictSamples(Template)
 H = [-0.3846 -0.7641 14 ;0.156 -0.5908 -6;-0.0002 -0.0001 -0.3929];
-SampleImages = []
-I = -10
+SampleImages = [];
+I = -10;
 while I < 10
     
-    new_img = warpImage(Temnplate,H);
-    SampleImages = cat(3, SampleImages, new_img);
+    H1 = [H(1,1) H(1,2) H(1,3) + I;H(2,1) H(2,2) H(2,3);H(3,1) H(3,2) H(3,3)];
+    H2 = [H(1,1) H(1,2) H(1,3);H(2,1) H(2,2) H(2,3) + I;H(3,1) H(3,2) H(3,3)];
+    H3 = [H(1,1) H(1,2) H(1,3);H(2,1) + I/10 H(2,2) H(2,3);H(3,1) H(3,2) H(3,3)];
+    H4 = [H(1,1) H(1,2) H(1,3);H(2,1) H(2,2) H(2,3);H(3,1) + I/1000 H(3,2) H(3,3)];
+    H5 = [H(1,1) H(1,2) H(1,3);H(2,1) H(2,2) H(2,3);H(3,1) + I/1000 H(3,2) H(3,3)];
+    
+    new_img1 = warpImage(Template,H1);
+    SampleImages = cat(3, SampleImages, new_img1);
+    new_img2 = warpImage(Template,H2);
+    SampleImages = cat(3, SampleImages, new_img2);
+    new_img3 = warpImage(Template,H3);
+    SampleImages = cat(3, SampleImages, new_img3);
+    new_img4 = warpImage(Template,H4);
+    SampleImages = cat(3, SampleImages, new_img4);
+    new_img5 = warpImage(Template,H5);
+    SampleImages = cat(3,SampleImages,new_img5);
+    I = I + 1;
 end
 end
 
