@@ -9,6 +9,7 @@ if strcmp(Tracker.search,'ANN') == 1
     [PARAANN] = parametersANN();
 elseif strcmp(Tracker.search,'PF') == 1
     display('Approximate Nearest Neighbour')
+    Tracker.warp = 'H'; % Choose between Homography (H) and Translational (T)
     [PARAPF] = parametersPF();
 else
     display('Homography Based')
@@ -39,4 +40,3 @@ elseif strcmp(Tracker.appearance, SF) == 1
 else
     display('Full Homography Motion Model')
 end
-
